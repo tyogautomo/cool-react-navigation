@@ -1,20 +1,38 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Dimensions } from 'react-native';
+import { View, Text, Image, ImageBackground, TouchableOpacity, FlatList } from 'react-native';
 import LottieView from 'lottie-react-native';
 
 import { styles } from './Home.style';
-import { pokemonLogo, loadingAnimation } from '../../themes/images';
-import { FlatList } from 'react-native-gesture-handler';
+import { pokemonLogo, loadingAnimation, tcgBackCard } from '../../themes/images';
 
 class Home extends Component {
-  componentDidMount() {
-    this.requestCards();
+  state = {
+    isRefreshing: false,
+    page: 1
   }
 
-  requestCards = () => {
-    const { requestTcgCard } = this.props;
-    requestTcgCard(1)
+  componentDidMount() {
+    this.initRequestCards();
   };
+
+  initRequestCards = async () => {
+    const { requestTcgCard } = this.props;
+    this.setState({ isRefreshing: true })
+    await requestTcgCard(1)
+    this.setState({ isRefreshing: false })
+  };
+
+  onRefresh = async () => {
+    this.initRequestCards();
+  };
+
+  onEndReach = () => {
+    const { requestPageTcgCard } = this.props;
+    this.setState(prevState => ({ page: prevState.page + 1 }), async () => {
+      console.log(this.state.page, 'this is page <<<<<<')
+      await requestPageTcgCard(this.state.page)
+    });
+  }
 
   renderLoading = () => {
     return (
@@ -31,8 +49,26 @@ class Home extends Component {
     );
   };
 
+  renderEmptyComponent = () => {
+    return (
+      <View>
+        <Text>Currently there is no cards.</Text>
+      </View>
+    );
+  };
+
+  renderHeadComponent = () => {
+    return (
+      <>
+        <Image source={pokemonLogo} style={styles.logo} />
+        <Text style={styles.subTitle}>The Trading Card Game</Text>
+      </>
+    );
+  };
+
   renderCardList = () => {
-    const { cards } = this.props;
+    const { cards, isLoadingFetchingCards } = this.props;
+    const { isRefreshing } = this.state;
 
     return (
       <View style={styles.cardsContainer}>
@@ -40,8 +76,14 @@ class Home extends Component {
           data={cards}
           renderItem={this.renderItem}
           numColumns={3}
-          keyExtractor={(item, index) => item.id}
+          keyExtractor={(item) => item.id}
           columnWrapperStyle={styles.columnWrapper}
+          ListHeaderComponent={this.renderHeadComponent()}
+          ListEmptyComponent={isLoadingFetchingCards ? this.renderLoading() : this.renderEmptyComponent()}
+          onRefresh={this.onRefresh}
+          refreshing={isRefreshing}
+          onEndReached={this.onEndReach}
+          onEndReachedThreshold={0.1}
         />
       </View>
     );
@@ -49,24 +91,19 @@ class Home extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <View style={styles.card}>
-        <Image source={{ uri: item.imageUrl }} style={styles.cardImage} />
-        <Text style={styles.cardName}>{item.name}</Text>
-      </View>
-    )
-  }
-
-  itemSeparator = () => {
-    return <View style={{ width: 10 }} />
-  }
+      <TouchableOpacity activeOpacity={0.2}>
+        <ImageBackground source={tcgBackCard} style={styles.card} imageStyle={styles.cardImage}>
+          <Image source={{ uri: item.imageUrl }} style={styles.cardImage} />
+          <Text style={styles.cardName}>{item.name}</Text>
+        </ImageBackground>
+      </TouchableOpacity>
+    );
+  };
 
   render() {
-    const { isLoadingFetchingCards } = this.props;
     return (
       <View style={styles.body}>
-        <Image source={pokemonLogo} style={styles.logo} />
-        <Text style={styles.subTitle}>The Trading Card Game</Text>
-        {isLoadingFetchingCards ? this.renderLoading() : this.renderCardList()}
+        {this.renderCardList()}
       </View>
     );
   };
