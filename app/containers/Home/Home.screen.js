@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ImageBackground, TouchableOpacity, FlatList } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+  FlatList,
+  ActivityIndicator,
+  Button
+} from 'react-native';
 import LottieView from 'lottie-react-native';
 
 import { styles } from './Home.style';
@@ -23,6 +32,7 @@ class Home extends Component {
   };
 
   onRefresh = async () => {
+    this.setState({ page: 1 });
     this.initRequestCards();
   };
 
@@ -33,6 +43,10 @@ class Home extends Component {
       await requestPageTcgCard(this.state.page)
     });
   }
+
+  onPressToTop = () => {
+    this.flatListRef.scrollToOffset({ animated: true, offset: 0 })
+  };
 
   renderLoading = () => {
     return (
@@ -66,6 +80,17 @@ class Home extends Component {
     );
   };
 
+  renderFooterComponent = () => {
+    const { isLoadingPage } = this.props;
+    return (
+      <View style={styles.footerContainer}>
+        {
+          isLoadingPage ? <ActivityIndicator size="small" color="white" /> : null
+        }
+      </View>
+    );
+  };
+
   renderCardList = () => {
     const { cards, isLoadingFetchingCards } = this.props;
     const { isRefreshing } = this.state;
@@ -73,6 +98,7 @@ class Home extends Component {
     return (
       <View style={styles.cardsContainer}>
         <FlatList
+          ref={ref => this.flatListRef = ref}
           data={cards}
           renderItem={this.renderItem}
           numColumns={3}
@@ -80,6 +106,7 @@ class Home extends Component {
           columnWrapperStyle={styles.columnWrapper}
           ListHeaderComponent={this.renderHeadComponent()}
           ListEmptyComponent={isLoadingFetchingCards ? this.renderLoading() : this.renderEmptyComponent()}
+          ListFooterComponent={this.renderFooterComponent()}
           onRefresh={this.onRefresh}
           refreshing={isRefreshing}
           onEndReached={this.onEndReach}
@@ -100,10 +127,19 @@ class Home extends Component {
     );
   };
 
+  renderToTopButton = () => {
+    return (
+      <View style={{ position: 'absolute', flex: 1, bottom: 0, right: 0, padding: 10 }}>
+        <Button title="Go To Top" onPress={this.onPressToTop} />
+      </View>
+    );
+  };
+
   render() {
     return (
       <View style={styles.body}>
         {this.renderCardList()}
+        {this.renderToTopButton()}
       </View>
     );
   };

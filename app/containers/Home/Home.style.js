@@ -66,6 +66,10 @@ const styles = StyleSheet.create({
     top: -15,
     elevation: 2,
     width: (245 / (DEVICE_WIDTH / 160)) * 0.8
+  },
+  footerContainer: {
+    marginBottom: 20,
+    height: 40
   }
 })
 
