@@ -18,9 +18,10 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     color: colors.white,
-    fontSize: 20,
+    fontSize: 25,
     alignSelf: 'center',
-    marginBottom: 40
+    marginBottom: 40,
+    fontFamily: 'Oswald-Bold'
   },
   loadingContainer: {
     justifyContent: 'center',
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     borderRadius: 4
   },
   cardName: {
-    color: colors.black,
+    color: colors.myGrey,
     fontSize: 10,
     textAlign: 'center',
     backgroundColor: 'white',
@@ -65,7 +66,8 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     top: -15,
     elevation: 2,
-    width: (245 / (DEVICE_WIDTH / 160)) * 0.8
+    width: (245 / (DEVICE_WIDTH / 160)) * 0.8,
+    fontFamily: 'Oswald-Medium'
   },
   footerContainer: {
     marginBottom: 20,

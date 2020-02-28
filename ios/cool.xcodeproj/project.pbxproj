@@ -21,6 +21,12 @@
 		B3C5D3BE7FEE800905C4CD5D /* libPods-coolTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BCD5CBD05A69981F10D1CE /* libPods-coolTests.a */; };
 		DC94F4DC327565E1A3DDD6B0 /* libPods-cool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E522F08EA49DF2C3C9FA17 /* libPods-cool.a */; };
 		1C2CC3E5E436409095BFE9E6 /* TradeWinds-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 924181C4C83142329D9DC972 /* TradeWinds-Regular.ttf */; };
+		C7852082A2E8426B82A01BD7 /* Oswald-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC2AACEF03CF41F699B25EC0 /* Oswald-Bold.ttf */; };
+		F0168B37508242D08C376654 /* Oswald-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F7EC6B328C443549911559E /* Oswald-ExtraLight.ttf */; };
+		2D6806E887A4427EAEB3F4BA /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F547A5118D7045E49DC7919A /* Oswald-Light.ttf */; };
+		A159D1C0BF8549209FE78C6F /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 692048B88CB244BB9E677B7A /* Oswald-Medium.ttf */; };
+		B26D697DF43A40B2A2ED9CA3 /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5445CA457A4F42888AFB7D38 /* Oswald-Regular.ttf */; };
+		E080D0EA9E5342B7B6BB8D04 /* Oswald-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E2D5D05E9BC44C5B03EBB97 /* Oswald-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +75,12 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		924181C4C83142329D9DC972 /* TradeWinds-Regular.ttf */ = {isa = PBXFileReference; name = "TradeWinds-Regular.ttf"; path = "../app/assets/Fonts/TradeWinds-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FC2AACEF03CF41F699B25EC0 /* Oswald-Bold.ttf */ = {isa = PBXFileReference; name = "Oswald-Bold.ttf"; path = "../app/assets/Fonts/Oswald-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6F7EC6B328C443549911559E /* Oswald-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Oswald-ExtraLight.ttf"; path = "../app/assets/Fonts/Oswald-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F547A5118D7045E49DC7919A /* Oswald-Light.ttf */ = {isa = PBXFileReference; name = "Oswald-Light.ttf"; path = "../app/assets/Fonts/Oswald-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		692048B88CB244BB9E677B7A /* Oswald-Medium.ttf */ = {isa = PBXFileReference; name = "Oswald-Medium.ttf"; path = "../app/assets/Fonts/Oswald-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5445CA457A4F42888AFB7D38 /* Oswald-Regular.ttf */ = {isa = PBXFileReference; name = "Oswald-Regular.ttf"; path = "../app/assets/Fonts/Oswald-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6E2D5D05E9BC44C5B03EBB97 /* Oswald-SemiBold.ttf */ = {isa = PBXFileReference; name = "Oswald-SemiBold.ttf"; path = "../app/assets/Fonts/Oswald-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +217,12 @@
 			isa = "PBXGroup";
 			children = (
 				924181C4C83142329D9DC972 /* TradeWinds-Regular.ttf */,
+				FC2AACEF03CF41F699B25EC0 /* Oswald-Bold.ttf */,
+				6F7EC6B328C443549911559E /* Oswald-ExtraLight.ttf */,
+				F547A5118D7045E49DC7919A /* Oswald-Light.ttf */,
+				692048B88CB244BB9E677B7A /* Oswald-Medium.ttf */,
+				5445CA457A4F42888AFB7D38 /* Oswald-Regular.ttf */,
+				6E2D5D05E9BC44C5B03EBB97 /* Oswald-SemiBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -351,6 +369,12 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				1C2CC3E5E436409095BFE9E6 /* TradeWinds-Regular.ttf in Resources */,
+				C7852082A2E8426B82A01BD7 /* Oswald-Bold.ttf in Resources */,
+				F0168B37508242D08C376654 /* Oswald-ExtraLight.ttf in Resources */,
+				2D6806E887A4427EAEB3F4BA /* Oswald-Light.ttf in Resources */,
+				A159D1C0BF8549209FE78C6F /* Oswald-Medium.ttf in Resources */,
+				B26D697DF43A40B2A2ED9CA3 /* Oswald-Regular.ttf in Resources */,
+				E080D0EA9E5342B7B6BB8D04 /* Oswald-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

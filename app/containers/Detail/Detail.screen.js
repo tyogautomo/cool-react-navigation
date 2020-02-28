@@ -4,9 +4,12 @@ import {
   Text,
   ImageBackground,
   Image,
-  ActivityIndicator
+  ActivityIndicator,
+  ScrollView
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import IconAwesome from 'react-native-vector-icons/FontAwesome';
+import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { tcgBackCard } from '../../themes/images';
 import { styles } from './Detail.style';
@@ -56,10 +59,53 @@ class Detail extends Component {
   }
 
   renderTypes = () => {
+    const { card, isLoadingDetailPage } = this.props;
     return (
       <View style={styles.typesSection}>
         <View style={styles.typesContainer}>
-          <Text>Types Section</Text>
+          <Text style={styles.typesTitle}>INFO</Text>
+          <View style={styles.infoCardContainer}>
+            <View style={styles.typeCardContainer}>
+              <IconAwesome name="bug" color={colors.green} size={17} style={{ marginRight: 10 }} />
+              {isLoadingDetailPage ? null : (
+                card.types?.map(type => (
+                  <Text style={styles.typesCard(type)} key={type}>{type}</Text>
+                )) ?? <Text style={styles.noType}>No types</Text>
+              )}
+            </View>
+            <View style={styles.typeCardContainer}>
+              <IconAwesome name="heart" color={colors.red} size={17} style={{ marginRight: 10 }} />
+              <Text style={styles.noType}>{card.hp || 'None'}</Text>
+            </View>
+            <View style={styles.typeCardContainer}>
+              <IconAwesome name="paint-brush" color={colors.blue} size={17} style={{ marginRight: 10 }} />
+              <Text style={styles.noType}>{card.artist || 'No Artist'}</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    );
+  };
+
+  renderAttack = () => {
+    const { card, isLoadingDetailPage } = this.props;
+    return (
+      <View style={styles.attackSection}>
+        <View style={styles.attackContainer}>
+          <Text style={styles.typesTitle}>ATTACKS</Text>
+          <View style={styles.infoCardContainer}>
+            {card.attacks?.map(att => (
+              <View style={styles.attackRow}>
+                <IconMaterial name="sword" color={colors.red} size={17} style={{ marginRight: 10 }} />
+                <View>
+                  <Text>adsasd</Text>
+                  <View style={{ flexDirection: 'row' }}>
+                    <Text>adsasd</Text>
+                  </View>
+                </View>
+              </View>
+            ))}
+          </View>
         </View>
       </View>
     );
@@ -67,10 +113,12 @@ class Detail extends Component {
 
   render() {
     return (
-      <View>
+      <ScrollView>
         {this.renderCardAnimation()}
         {this.renderTitle()}
-      </View>
+        {this.renderTypes()}
+        {this.renderAttack()}
+      </ScrollView>
     );
   };
 }
