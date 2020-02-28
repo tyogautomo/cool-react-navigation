@@ -45,11 +45,31 @@ class Detail extends Component {
     );
   };
 
+  renderTitle = () => {
+    const { card } = this.props;
+
+    return (
+      <View>
+        <Text style={styles.title}>{card.name}</Text>
+      </View>
+    )
+  }
+
+  renderTypes = () => {
+    return (
+      <View style={styles.typesSection}>
+        <View style={styles.typesContainer}>
+          <Text>Types Section</Text>
+        </View>
+      </View>
+    );
+  };
+
   render() {
     return (
       <View>
         {this.renderCardAnimation()}
-        <Text>test</Text>
+        {this.renderTitle()}
       </View>
     );
   };
