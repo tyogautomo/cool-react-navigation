@@ -1,3 +1,3 @@
-const baseUrl = page => `https://api.pokemontcg.io/v1/cards?page=${page}`
+const baseUrl = `https://api.pokemontcg.io/v1`
 
 export { baseUrl };

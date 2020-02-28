@@ -48,6 +48,14 @@ class Home extends Component {
     this.flatListRef.scrollToOffset({ animated: true, offset: 0 })
   };
 
+  onPressItemCard = ({ name, id }) => {
+    const { navigation } = this.props;
+    navigation.navigate('Detail', {
+      name,
+      id
+    });
+  }
+
   renderLoading = () => {
     return (
       <View style={styles.loadingContainer}>
@@ -118,7 +126,7 @@ class Home extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <TouchableOpacity activeOpacity={0.2}>
+      <TouchableOpacity activeOpacity={0.2} onPress={() => this.onPressItemCard(item)}>
         <ImageBackground source={tcgBackCard} style={styles.card} imageStyle={styles.cardImage}>
           <Image source={{ uri: item.imageUrl }} style={styles.cardImage} />
           <Text style={styles.cardName}>{item.name}</Text>
