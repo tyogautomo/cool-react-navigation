@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, ImageBackground } from 'react-native';
+import { View, Text, ImageBackground, Image } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 import { tcgBackCard } from '../../themes/images';
-import { styles } from '../Home/Home.style';
+import { styles } from './Detail.style';
 
 class Detail extends Component {
   componentDidMount() {
@@ -16,19 +16,28 @@ class Detail extends Component {
   };
 
   renderCardAnimation = () => {
+    const bouncing = {
+      from: {
+        top: -30
+      },
+      to: {
+        top: 0
+      }
+    }
     return (
-      <View>
-        <ImageBackground source={tcgBackCard} style={styles}>
+      <Animatable.View style={styles.cardSection} animation={bouncing} iterationCount="infinite" direction="alternate">
+        <ImageBackground source={tcgBackCard} style={styles.cardContainer} imageStyle={styles.cardContainer}>
 
         </ImageBackground>
-      </View>
-    )
+      </Animatable.View>
+    );
   };
 
   render() {
     return (
       <View>
         {this.renderCardAnimation()}
+        <Text>test</Text>
       </View>
     );
   };
