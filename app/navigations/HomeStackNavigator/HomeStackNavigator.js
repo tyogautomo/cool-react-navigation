@@ -10,7 +10,7 @@ const homeStackNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        cardStyle: { backgroundColor: colors.whiteTrans },
+        cardStyle: { backgroundColor: colors.blackTrans },
         headerStyle: { elevation: 0 },
         gestureEnabled: true,
         cardOverlayEnabled: true,

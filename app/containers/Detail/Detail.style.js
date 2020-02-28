@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
   cardContainer: {
     width: 245 / (DEVICE_WIDTH / 250),
     height: 342 / (DEVICE_WIDTH / 250),
-    borderRadius: 10
+    borderRadius: 7,
+    justifyContent: 'center'
   }
 });
 
