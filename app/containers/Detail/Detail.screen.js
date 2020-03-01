@@ -10,6 +10,7 @@ import {
 import * as Animatable from 'react-native-animatable';
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
 import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconAnt from 'react-native-vector-icons/AntDesign';
 
 import { tcgBackCard } from '../../themes/images';
 import { styles } from './Detail.style';
@@ -49,11 +50,10 @@ class Detail extends Component {
   };
 
   renderTitle = () => {
-    const { card } = this.props;
-
+    const { route } = this.props;
     return (
       <View>
-        <Text style={styles.title}>{card.name}</Text>
+        <Text style={styles.title}>{route.params.name}</Text>
       </View>
     )
   }
@@ -88,28 +88,85 @@ class Detail extends Component {
   };
 
   renderAttack = () => {
-    const { card, isLoadingDetailPage } = this.props;
+    const { card } = this.props;
     return (
       <View style={styles.attackSection}>
         <View style={styles.attackContainer}>
-          <Text style={styles.typesTitle}>ATTACKS</Text>
-          <View style={styles.infoCardContainer}>
-            {card.attacks?.map(att => (
-              <View style={styles.attackRow}>
-                <IconMaterial name="sword" color={colors.red} size={17} style={{ marginRight: 10 }} />
-                <View>
-                  <Text>adsasd</Text>
-                  <View style={{ flexDirection: 'row' }}>
-                    <Text>adsasd</Text>
+          <Text style={styles.typesTitle}>ATTACKS / ABILITY</Text>
+          <View>
+            {card.attacks?.map((att, idx) => (
+              <View style={styles.attackRow} key={idx}>
+                <IconMaterial name="sword" color={colors.red} size={17} style={{ marginRight: 10, top: 5 }} />
+                <View style={styles.attackDesc}>
+                  <Text style={styles.attackName}>{att.name}</Text>
+                  <Text style={styles.descriptionTitle}>Description:</Text>
+                  <Text style={styles.descriptionText}>{att.text || '-'}</Text>
+                  <View style={styles.damageSection}>
+                    <Text style={styles.descriptionTitle}>Damage: </Text>
+                    <Text style={styles.attackText}>{att.damage || '-'}</Text>
+                  </View>
+                  <View style={styles.damageSection}>
+                    <Text style={styles.descriptionTitle}>Energy Cost: </Text>
+                    <Text style={styles.energyCostText}>{att.convertedEnergyCost || '-'}</Text>
                   </View>
                 </View>
               </View>
-            ))}
+            )) ?? <Text style={styles.noType}>No Attacks</Text>}
           </View>
         </View>
       </View>
     );
   };
+
+  renderWeakness = () => {
+    const { card } = this.props;
+    return (
+      <View style={styles.attackSection}>
+        <View style={styles.attackContainer}>
+          <Text style={styles.typesTitle}>WEAKNESSES</Text>
+          <View>
+            {card.weaknesses?.map((weak, idx) => (
+              <View style={styles.attackRow} key={idx}>
+                <IconAnt name="caretdown" color={colors.purple} size={17} style={{ marginRight: 10, top: 3 }} />
+                <View style={styles.attackDesc}>
+                  <Text style={styles.weaknessName}>{weak.type}</Text>
+                  <View style={styles.damageSection}>
+                    <Text style={styles.descriptionTitle}>Value: </Text>
+                    <Text style={styles.attackText}>{weak.value || '-'}</Text>
+                  </View>
+                </View>
+              </View>
+            )) ?? <Text style={styles.noType}>No Weaknesses</Text>}
+          </View>
+        </View>
+      </View>
+    );
+  }
+
+  renderResistance = () => {
+    const { card } = this.props;
+    return (
+      <View style={styles.attackSection}>
+        <View style={styles.attackContainer}>
+          <Text style={styles.typesTitle}>RESISTANCE</Text>
+          <View>
+            {card.resistances?.map((weak, idx) => (
+              <View style={styles.attackRow} key={idx}>
+                <IconAwesome name="shield" color={colors.blue} size={17} style={{ marginRight: 10, top: 5 }} />
+                <View style={styles.attackDesc}>
+                  <Text style={styles.resistanceName}>{weak.type}</Text>
+                  <View style={styles.damageSection}>
+                    <Text style={styles.descriptionTitle}>Value: </Text>
+                    <Text style={styles.attackText}>{weak.value || '-'}</Text>
+                  </View>
+                </View>
+              </View>
+            )) ?? <Text style={styles.noType}>No Resistance</Text>}
+          </View>
+        </View>
+      </View>
+    );
+  }
 
   render() {
     return (
@@ -118,6 +175,8 @@ class Detail extends Component {
         {this.renderTitle()}
         {this.renderTypes()}
         {this.renderAttack()}
+        {this.renderWeakness()}
+        {this.renderResistance()}
       </ScrollView>
     );
   };

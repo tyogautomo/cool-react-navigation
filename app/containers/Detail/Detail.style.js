@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
     color: colors.white,
     textAlign: 'center',
     fontSize: 40,
-    marginTop: 10
+    marginTop: 10,
+    marginBottom: 20
   },
   typesSection: {
     paddingHorizontal: 20,
@@ -105,7 +106,49 @@ const styles = StyleSheet.create({
     padding: 10
   },
   attackRow: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: 5,
+    width: '100%'
+  },
+  attackDesc: {
+    flex: 1
+  },
+  attackName: {
+    fontFamily: 'Oswald-SemiBold',
+    fontSize: 14,
+    color: colors.red
+  },
+  descriptionTitle: {
+    fontFamily: 'Oswald-Medium',
+    fontSize: 12
+  },
+  descriptionText: {
+    fontFamily: 'Oswald-Regular',
+    fontSize: 10
+  },
+  attackText: {
+    fontFamily: 'Oswald-Regular',
+    fontSize: 12,
+    color: colors.red
+  },
+  energyCostText: {
+    fontFamily: 'Oswald-Regular',
+    fontSize: 12,
+    color: colors.blue
+  },
+  damageSection: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  weaknessName: {
+    fontFamily: 'Oswald-SemiBold',
+    fontSize: 14,
+    color: colors.purple
+  },
+  resistanceName: {
+    fontFamily: 'Oswald-SemiBold',
+    fontSize: 14,
+    color: colors.blue
   }
 });
 
