@@ -5,12 +5,14 @@ import {
   ImageBackground,
   Image,
   ActivityIndicator,
-  ScrollView
+  ScrollView,
+  TouchableOpacity
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
 import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconAnt from 'react-native-vector-icons/AntDesign';
+import Lightbox from 'react-native-lightbox';
 
 import { tcgBackCard } from '../../themes/images';
 import { styles } from './Detail.style';
@@ -38,13 +40,17 @@ class Detail extends Component {
     }
     return (
       <Animatable.View style={styles.cardSection} animation={bouncing} iterationCount="infinite" direction="alternate">
-        <ImageBackground source={tcgBackCard} style={styles.cardContainer} imageStyle={styles.cardContainer}>
-          {isLoadingDetailPage ? (
-            <ActivityIndicator size="large" color={colors.white} style={{ alignSelf: 'center' }} />
-          ) : (
-              <Image source={{ uri: card.imageUrlHiRes }} style={styles.cardContainer} />
-            )}
-        </ImageBackground>
+        <TouchableOpacity>
+          <Lightbox>
+            <ImageBackground source={tcgBackCard} style={styles.cardContainer} imageStyle={styles.cardContainer}>
+              {isLoadingDetailPage ? (
+                <ActivityIndicator size="large" color={colors.white} style={{ alignSelf: 'center' }} />
+              ) : (
+                  <Image source={{ uri: card.imageUrlHiRes }} style={styles.cardContainer} />
+                )}
+            </ImageBackground>
+          </Lightbox>
+        </TouchableOpacity>
       </Animatable.View>
     );
   };
