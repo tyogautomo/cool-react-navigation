@@ -1,10 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
+import { enableScreens } from 'react-native-screens';
 
 import { store } from './app/redux/store';
-import { homeStackNavigator } from './app/navigations/HomeStackNavigator/HomeStackNavigator';
 import { mainBottomTabNavigator } from './app/navigations/MainBottomTabNavigator/MainBottomTabNavigator'
+
+enableScreens();
 
 const App = () => {
   return (

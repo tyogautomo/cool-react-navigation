@@ -1,18 +1,14 @@
 import React from 'react';
-import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import { Search } from '../screenConfigs';
+import { searchTopTabNavigator } from '../SearchTopTabNavigator/SearchTopTabNavigator';
 
 const Stack = createStackNavigator();
 
 const searchStackNavigator = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}
-    >
-      <Stack.Screen name="Search" component={Search} />
+    <Stack.Navigator>
+      <Stack.Screen name="Search" component={searchTopTabNavigator} options={{ title: 'Search Pokemon', headerStyle: { elevation: 0 } }} />
     </Stack.Navigator>
   )
 }
