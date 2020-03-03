@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     backgroundColor: 'white',
-    marginBottom: 3
+    marginBottom: 3,
+    marginTop: 10
   },
   input: {
     backgroundColor: colors.thinGray,
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   dropdownContainer: {
-    width: '100%',
+    width: '70%',
     padding: 0
   }
 });

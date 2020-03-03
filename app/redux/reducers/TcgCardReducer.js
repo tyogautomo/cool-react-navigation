@@ -13,7 +13,13 @@ import {
   REQUEST_CARD_TYPES_FAILED,
   REQUEST_CARD_SUBTYPES,
   REQUEST_CARD_SUBTYPES_SUCCESS,
-  REQUEST_CARD_SUBTYPES_FAILED
+  REQUEST_CARD_SUBTYPES_FAILED,
+  REQUEST_SEARCH_TYPES_CARDS,
+  REQUEST_SEARCH_TYPES_CARDS_SUCCESS,
+  REQUEST_SEARCH_TYPES_CARDS_FAILED,
+  REQUEST_SEARCH_SUBTYPES_CARDS,
+  REQUEST_SEARCH_SUBTYPES_CARDS_SUCCESS,
+  REQUEST_SEARCH_SUBTYPES_CARDS_FAILED
 } from '../constant';
 
 const initialState = {
@@ -21,11 +27,14 @@ const initialState = {
   card: {},
   types: [],
   subtypes: [],
+  cardsByTypes: [],
+  cardsBySubtypes: [],
   isLoadingFetchingCards: false,
   isLoadingPage: false,
   isLoadingDetailPage: false,
   isLoadingTypes: false,
-  isLoadingSubtypes: false
+  isLoadingSubtypes: false,
+  isLoadingSearch: false
 }
 
 const tcgCardReducer = (state = initialState, action) => {
@@ -111,6 +120,40 @@ const tcgCardReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoadingSubtypes: false
+      }
+    case REQUEST_SEARCH_TYPES_CARDS:
+      return {
+        ...state,
+        isLoadingSearch: true,
+        cardsByTypes: []
+      }
+    case REQUEST_SEARCH_TYPES_CARDS_SUCCESS:
+      return {
+        ...state,
+        isLoadingSearch: false,
+        cardsByTypes: action.payload
+      }
+    case REQUEST_SEARCH_TYPES_CARDS_FAILED:
+      return {
+        ...state,
+        isLoadingSearch: false
+      }
+    case REQUEST_SEARCH_SUBTYPES_CARDS:
+      return {
+        ...state,
+        isLoadingSearch: true,
+        cardsBySubtypes: []
+      }
+    case REQUEST_SEARCH_SUBTYPES_CARDS_SUCCESS:
+      return {
+        ...state,
+        isLoadingSearch: false,
+        cardsBySubtypes: action.payload
+      }
+    case REQUEST_SEARCH_SUBTYPES_CARDS_FAILED:
+      return {
+        ...state,
+        isLoadingSearch: false
       }
     default:
       return { ...state };

@@ -15,7 +15,13 @@ import {
   REQUEST_CARD_TYPES_FAILED,
   REQUEST_CARD_SUBTYPES,
   REQUEST_CARD_SUBTYPES_FAILED,
-  REQUEST_CARD_SUBTYPES_SUCCESS
+  REQUEST_CARD_SUBTYPES_SUCCESS,
+  REQUEST_SEARCH_TYPES_CARDS_FAILED,
+  REQUEST_SEARCH_TYPES_CARDS_SUCCESS,
+  REQUEST_SEARCH_TYPES_CARDS,
+  REQUEST_SEARCH_SUBTYPES_CARDS_FAILED,
+  REQUEST_SEARCH_SUBTYPES_CARDS_SUCCESS,
+  REQUEST_SEARCH_SUBTYPES_CARDS
 } from '../constant';
 import { baseUrl } from '../../utils/baseUrl';
 
@@ -79,9 +85,30 @@ const requestCardSubtypes = () => async dispatch => {
   }
 };
 
+const requestSearchCards = (typing, type, name) => async dispatch => {
+  try {
+    dispatch({
+      type: typing === 'types' ? REQUEST_SEARCH_TYPES_CARDS : REQUEST_SEARCH_SUBTYPES_CARDS
+    })
+    const { data } = await axios({
+      url: `${baseUrl}/cards?${typing}=${type}&name=${name}`
+    })
+    dispatch({
+      type: typing === 'types' ? REQUEST_SEARCH_TYPES_CARDS_SUCCESS : REQUEST_SEARCH_SUBTYPES_CARDS_SUCCESS,
+      payload: data.cards
+    })
+  } catch (error) {
+    dispatch({
+      type: typing === 'types' ? REQUEST_SEARCH_TYPES_CARDS_FAILED : REQUEST_SEARCH_SUBTYPES_CARDS_FAILED
+    })
+  }
+}
+
 export {
   requestTcgCard,
   requestPageTcgCard,
   requestDetailCard,
-  requestCardTypes
+  requestCardTypes,
+  requestCardSubtypes,
+  requestSearchCards
 };
