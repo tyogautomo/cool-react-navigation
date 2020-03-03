@@ -1,13 +1,15 @@
 import { connect } from 'react-redux';
 
 import { SearchByTypes } from './SearchByTypes.screen';
-import { requestCardTypes } from '../../redux/actions/TcgCardAction';
+import { requestCardTypes, requestSearchCards } from '../../redux/actions/TcgCardAction';
 
 const mapStateToProps = state => ({
-  types: state.tcgCardReducer.types
+  types: state.tcgCardReducer.types,
+  cardsByTypes: state.tcgCardReducer.cardsByTypes
 });
 const mapDispatchToProps = dispatch => ({
-  requestCardTypes: () => dispatch(requestCardTypes())
+  requestCardTypes: () => dispatch(requestCardTypes()),
+  requestSearchCards: (typing, type, name) => dispatch(requestSearchCards(typing, type, name))
 });
 
 export default connect(
