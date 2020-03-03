@@ -5,7 +5,7 @@ class Search extends Component {
   render() {
     return (
       <View>
-        <Text>This is search text</Text>
+        <Text>This is search page.</Text>
       </View>
     )
   }
