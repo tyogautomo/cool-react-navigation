@@ -9,7 +9,13 @@ import {
   REQUEST_PAGE_CARDS_FAILED,
   REQUEST_CARD_DETAIL,
   REQUEST_CARD_DETAIL_SUCCESS,
-  REQUEST_CARD_DETAIL_FAILED
+  REQUEST_CARD_DETAIL_FAILED,
+  REQUEST_CARD_TYPES,
+  REQUEST_CARD_TYPES_SUCCESS,
+  REQUEST_CARD_TYPES_FAILED,
+  REQUEST_CARD_SUBTYPES,
+  REQUEST_CARD_SUBTYPES_FAILED,
+  REQUEST_CARD_SUBTYPES_SUCCESS
 } from '../constant';
 import { baseUrl } from '../../utils/baseUrl';
 
@@ -49,8 +55,33 @@ const requestDetailCard = cardId => async dispatch => {
   }
 }
 
+const requestCardTypes = () => async dispatch => {
+  try {
+    dispatch({ type: REQUEST_CARD_TYPES });
+    const { data } = await axios({
+      url: `${baseUrl}/types`
+    });
+    dispatch({ type: REQUEST_CARD_TYPES_SUCCESS, payload: data.types });
+  } catch (error) {
+    dispatch({ type: REQUEST_CARD_TYPES_FAILED });
+  }
+};
+
+const requestCardSubtypes = () => async dispatch => {
+  try {
+    dispatch({ type: REQUEST_CARD_SUBTYPES });
+    const { data } = await axios({
+      url: `${baseUrl}/types`
+    });
+    dispatch({ type: REQUEST_CARD_SUBTYPES_SUCCESS, payload: data.subtypes });
+  } catch (error) {
+    dispatch({ type: REQUEST_CARD_SUBTYPES_FAILED });
+  }
+};
+
 export {
   requestTcgCard,
   requestPageTcgCard,
-  requestDetailCard
+  requestDetailCard,
+  requestCardTypes
 };

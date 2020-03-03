@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, ScrollView } from 'react-native';
+import { View, TextInput, ScrollView, FlatList } from 'react-native';
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
 import { Dropdown } from 'react-native-material-dropdown'
 
@@ -27,6 +27,10 @@ class SearchByTypes extends Component {
   onChangeText = (text) => {
     this.setState({ choosedType: text });
   };
+
+  renderCardList = () => {
+
+  }
 
   render() {
     const { types } = this.state;
