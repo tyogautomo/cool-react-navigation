@@ -55,6 +55,14 @@ class SearchByTypes extends Component {
     );
   }
 
+  onPressCard = ({ name, id }) => {
+    const { navigation } = this.props;
+    navigation.navigate('Detail', {
+      name,
+      id
+    })
+  }
+
   renderSearchInput = () => {
     return (
       <View style={styles.inputContainer}>
@@ -92,15 +100,15 @@ class SearchByTypes extends Component {
         {isLoadingSearch ? (
           <ActivityIndicator size="large" color={colors.blue} />
         ) : (
-            cardsByTypes.map(item => this.renderItem({ item }))
+            cardsByTypes.map((item, index) => this.renderItem({ item, index }))
           )}
       </View>
     );
   };
 
-  renderItem = ({ item }) => {
+  renderItem = ({ item, index }) => {
     return (
-      <TouchableOpacity activeOpacity={0.7}>
+      <TouchableOpacity activeOpacity={0.7} onPress={() => this.onPressCard(item)} key={index}>
         <View style={styles.cardContainer}>
           <View>
             <ImageBackground source={tcgBackCard} style={styles.cardImage} imageStyle={styles.cardImage}>
@@ -126,7 +134,7 @@ class SearchByTypes extends Component {
   };
 
   renderTypeCard = (item) => {
-    return <Text style={styles.cardType}>{item}</Text>
+    return <Text style={styles.cardType} key={item}>{item}</Text>
   };
 
   render() {

@@ -10,7 +10,8 @@ const colors = {
   blue: '#327fa8',
   purple: '#d46bd6',
   thinGray: '#f0f0f0',
-  thinGray2: '#b5b5b5'
+  thinGray2: '#b5b5b5',
+  thinGray3: '#d6d6d6'
 }
 
 export { colors };

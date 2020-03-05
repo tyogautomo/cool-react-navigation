@@ -77,7 +77,7 @@ const requestCardSubtypes = () => async dispatch => {
   try {
     dispatch({ type: REQUEST_CARD_SUBTYPES });
     const { data } = await axios({
-      url: `${baseUrl}/types`
+      url: `${baseUrl}/subtypes`
     });
     dispatch({ type: REQUEST_CARD_SUBTYPES_SUCCESS, payload: data.subtypes });
   } catch (error) {
