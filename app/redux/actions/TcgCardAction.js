@@ -95,7 +95,7 @@ const requestSearchCards = (typing, type, name) => async dispatch => {
     })
     dispatch({
       type: typing === 'types' ? REQUEST_SEARCH_TYPES_CARDS_SUCCESS : REQUEST_SEARCH_SUBTYPES_CARDS_SUCCESS,
-      payload: data.cards
+      payload: data.cards.slice(0, 15)
     })
   } catch (error) {
     dispatch({

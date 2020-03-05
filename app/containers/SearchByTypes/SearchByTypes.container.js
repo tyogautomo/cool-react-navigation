@@ -5,7 +5,8 @@ import { requestCardTypes, requestSearchCards } from '../../redux/actions/TcgCar
 
 const mapStateToProps = state => ({
   types: state.tcgCardReducer.types,
-  cardsByTypes: state.tcgCardReducer.cardsByTypes
+  cardsByTypes: state.tcgCardReducer.cardsByTypes,
+  isLoadingSearch: state.tcgCardReducer.isLoadingSearch
 });
 const mapDispatchToProps = dispatch => ({
   requestCardTypes: () => dispatch(requestCardTypes()),

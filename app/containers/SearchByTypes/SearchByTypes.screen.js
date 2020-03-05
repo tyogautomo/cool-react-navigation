@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
-import { View, TextInput, ScrollView, FlatList, Text } from 'react-native';
+import {
+  View,
+  TextInput,
+  ScrollView,
+  Text,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+  ActivityIndicator
+} from 'react-native';
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
 import { Dropdown } from 'react-native-material-dropdown'
 import { Button } from 'react-native-paper';
 
 import { styles } from './SearchByTypes.style';
 import { colors } from '../../themes/colors';
+import { tcgBackCard } from '../../themes/images';
 
 class SearchByTypes extends Component {
   state = {
@@ -38,7 +48,11 @@ class SearchByTypes extends Component {
     const { requestSearchCards } = this.props;
     const { choosedType, name } = this.state;
 
-    requestSearchCards('types', choosedType, name);
+    requestSearchCards(
+      'types',
+      choosedType === 'All' ? '' : choosedType,
+      name
+    );
   }
 
   renderSearchInput = () => {
@@ -60,6 +74,8 @@ class SearchByTypes extends Component {
           label="Types"
           data={data}
           containerStyle={styles.dropdownContainer}
+          itemTextStyle={{ fontFamily: 'Oswald-Regular' }}
+          style={{ fontFamily: 'Oswald-Regular' }}
           onChangeText={this.onChangeTextDropdown}
         />
         <View style={{ alignItems: 'center', flex: 1 }}>
@@ -70,23 +86,47 @@ class SearchByTypes extends Component {
   };
 
   renderCardList = () => {
-    const { cardsByTypes } = this.props;
+    const { cardsByTypes, isLoadingSearch } = this.props;
     return (
-      <FlatList
-        ref={ref => this.flatListRef = ref}
-        data={cardsByTypes}
-        renderItem={this.renderItem}
-        keyExtractor={(item) => item.id}
-      />
+      <View style={{ padding: 5 }}>
+        {isLoadingSearch ? (
+          <ActivityIndicator size="large" color={colors.blue} />
+        ) : (
+            cardsByTypes.map(item => this.renderItem({ item }))
+          )}
+      </View>
     );
   };
 
   renderItem = ({ item }) => {
     return (
-      <View>
-        <Text>Halo</Text>
-      </View>
+      <TouchableOpacity activeOpacity={0.7}>
+        <View style={styles.cardContainer}>
+          <View>
+            <ImageBackground source={tcgBackCard} style={styles.cardImage} imageStyle={styles.cardImage}>
+              <Image source={{ uri: item.imageUrlHiRes }} style={styles.cardImage} />
+            </ImageBackground>
+          </View>
+          <View style={styles.cardInfoContainer}>
+            <Text style={styles.cardTitle}>{item.name}</Text>
+            <Text style={styles.cardArtist}>Artist : {item.artist || '-'}</Text>
+            <Text style={styles.cardArtist}>Rarerity : {item.rarity || '-'}</Text>
+            <Text style={styles.cardArtist}>Series : {item.series || '-'}</Text>
+            <Text style={styles.cardArtist}>Sets : {item.set || '-'}</Text>
+            <View style={styles.typesCardContainer}>
+              <Text style={styles.cardArtist}>Types : </Text>
+              {
+                item.types?.map(item => this.renderTypeCard(item))
+              }
+            </View>
+          </View>
+        </View>
+      </TouchableOpacity>
     );
+  };
+
+  renderTypeCard = (item) => {
+    return <Text style={styles.cardType}>{item}</Text>
   };
 
   render() {
