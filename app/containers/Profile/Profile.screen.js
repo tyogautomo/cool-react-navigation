@@ -172,6 +172,18 @@ class Profile extends Component {
           <Text style={{ textAlign: 'justify', marginBottom: 10 }}>
             {`${'      '}`}Example text for the long page. the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page.
           </Text>
+          <Text style={{ textAlign: 'justify', marginBottom: 10 }}>
+            {`${'      '}`}Example text for the long page. the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page.
+          </Text>
+          <Text style={{ textAlign: 'justify', marginBottom: 10 }}>
+            {`${'      '}`}Example text for the long page. the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page.
+          </Text>
+          <Text style={{ textAlign: 'justify', marginBottom: 10 }}>
+            {`${'      '}`}Example text for the long page. the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page.
+          </Text>
+          <Text style={{ textAlign: 'justify', marginBottom: 10 }}>
+            {`${'      '}`}Example text for the long page. the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page. Example text for the long page.
+          </Text>
         </ScrollView>
         {this.renderHeaderBar()}
         {this.renderHeaderContent()}
